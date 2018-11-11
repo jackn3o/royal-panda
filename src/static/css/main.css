@@ -1,0 +1,16 @@
+.application {
+    font-family: "Microsoft YaHei", 黑体, 宋体, sans-serif !important;
+}
+
+.v-toolbar.outlined{
+    border: 1px solid rgba(0,0,0, .12);
+}
+
+.v-card.outlined{
+  border-radius: 6px;
+  box-shadow:  inset 0px 0px 1px 0px rgba(0,0,0,0.4);
+}
+
+.v-breadcrumbs li:nth-child(2n){
+    padding:0 4px;
+}
