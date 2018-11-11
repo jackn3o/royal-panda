@@ -1,43 +1,51 @@
 <template>
   <v-app style="background-color: #FCF1EF;">
-    <v-card :height="160"
-            class="display-3 text-xs-center">
-      Royal Panda
+    <figure class="swing"
+            style="position: fixed; top:-0.2rem; right:2rem; z-index:4; height: 120px; width: 120px;">
+      <v-img @click="showMenu = !showMenu"
+             height="120"
+             src="../static/img/layout/suo.png"
+             aspect-ratio="1"
+             contain></v-img>
+    </figure>
+    <v-card class="pt-5"
+            :class="`${!showMenu? 'elevation-0': 'elevation-3'}`"
+            style="transition: .25s linear 0s;"
+            :style="styleObject">
+      <v-layout layout
+                align-center
+                justify-center
+                row
+                wrap>
+        <v-flex xs12
+                class="d-flex justify-center">
+          <v-img height="90"
+                 src="../static/img/layout/royal-panda.png"
+                 aspect-ratio="2.75"
+                 contain></v-img>
+        </v-flex>
+        <v-flex xs12
+                style="height:64px;">
+          <v-slide-y-transition mode="out-in">
+            <div v-if="!showMenu"
+                 class="d-flex justify-center">
+              <v-img height="30"
+                     max-width="30"
+                     src="../static/img/layout/panda.png"
+                     contain>
+              </v-img>
+            </div>
+            <tab-menu v-else></tab-menu>
+          </v-slide-y-transition>
+          <!-- <div v-if="showMenu"
+               class="d-flex justify-center">
+
+          </div> -->
+        </v-flex>
+      </v-layout>
     </v-card>
     <v-container>
-      <v-toolbar class="elevation-0 pa-0 outlined"
-                 dense>
-        <v-overflow-btn :items="dropdown_font"
-                        label="Select font"
-                        hide-details
-                        class="pa-0"
-                        overflow></v-overflow-btn>
-        <v-divider vertical></v-divider>
-
-        <v-overflow-btn :items="dropdown_font"
-                        label="Select size"
-                        hide-details
-                        class="pa-0"
-                        overflow></v-overflow-btn>
-        <v-divider vertical></v-divider>
-        <v-overflow-btn :items="dropdown_font"
-                        label="Select size"
-                        hide-details
-                        class="pa-0"
-                        overflow></v-overflow-btn>
-        <v-divider vertical></v-divider>
-        <v-overflow-btn :items="dropdown_font"
-                        label="Select size"
-                        hide-details
-                        class="pa-0"
-                        overflow></v-overflow-btn>
-        <v-divider vertical></v-divider>
-        <v-overflow-btn :items="dropdown_font"
-                        label="Select size"
-                        hide-details
-                        class="pa-0"
-                        overflow></v-overflow-btn>
-      </v-toolbar>
+      <p-filter></p-filter>
       <v-card flat
               class="transparent">
         <v-card-title>
@@ -55,9 +63,11 @@
       </v-card>
       <v-divider></v-divider>
       <v-container style="position:relative;"
+                   class="pt-0"
                    grid-list-lg
                    fluid>
-        <v-btn color="accent"
+        <v-btn @click="swipeLeft"
+               color="accent"
                fab
                small
                outline
@@ -66,7 +76,8 @@
           <v-icon class="black--text"
                   large>navigate_before</v-icon>
         </v-btn>
-        <v-btn color="accent"
+        <v-btn @click="swipeRight"
+               color="accent"
                fab
                small
                outline
@@ -75,7 +86,10 @@
           <v-icon class="black--text"
                   large>navigate_next</v-icon>
         </v-btn>
-        <v-layout row style="overflow: hidden">
+        <v-layout row
+                  class="mb-3 pa-3"
+                  style="overflow: hidden"
+                  ref="content">
           <v-flex v-for="p in products"
                   :key="p.id"
                   style="flex-shrink: 0;"
@@ -85,7 +99,7 @@
                   xl2
                   d-flex>
             <v-hover>
-              <v-card :height="460"
+              <v-card :height="420"
                       slot-scope="{ hover }"
                       class="transparent"
                       style="border-radius:12px;"
@@ -101,14 +115,14 @@
                           :class="`${hover? 'elevation-0': 'outlined'}`"
                           style="justify-content: center; align-items:center;">
                     <v-img :src="p.src"
-                           height="260"
+                           height="240"
                            contain
                            aspect-ratio="16/9"
                            class="white">
                       <v-slide-y-transition mode="out-in">
                         <v-card-text v-if="hover"
                                      class="transition-slow-in-fast-out pa-0"
-                                     style="height: 240px; display: flex; align-items: center;">
+                                     style="height: 220px; display: flex; align-items: center;">
                           <div style="flex :1;">
                             <v-btn depressed
                                    block
@@ -151,71 +165,28 @@
             </v-hover>
           </v-flex>
         </v-layout>
-        <v-layout layout
-                  align-center
-                  justify-center
-                  row class="mt-3">
-          <v-btn color="accent"
-                 fab
-                 outline
-                 dark
-                 style="border-width: 2px; z-index:4;">
-            <div class="black--text display-1">?</div>
-          </v-btn>
-        </v-layout>
+        <help></help>
       </v-container>
     </v-container>
-
-    <v-footer :fixed="true"
-              :height="48"
-              class="pa-3"
-              style="background-color: #F8F8F8;"
-              app>
-      <div class="d-flex">
-        <v-icon>home</v-icon>
-        <div class="ml-2">
-          <div class="caption">Line1</div>
-          <div class="caption">line2</div>
-        </div>
-      </div>
-      <v-flex></v-flex>
-      <div class="d-flex">
-        <v-icon class="material">lock</v-icon>
-        <div class="ml-2">
-          <div class="caption">Line1</div>
-          <div class="caption">line2</div>
-        </div>
-      </div>
-      <div class="d-flex ml-2">
-        <v-icon class="material">lock</v-icon>
-        <div class="ml-2">
-          <div class="caption">Line1</div>
-          <div class="caption">line2</div>
-        </div>
-      </div>
-      <div class="d-flex ml-2">
-        <v-icon class="material">lock</v-icon>
-        <div class="ml-2">
-          <div class="caption">Line1</div>
-          <div class="caption">line2</div>
-        </div>
-      </div>
-      <div class="d-flex ml-2">
-        <v-icon class="material">lock</v-icon>
-        <div class="ml-2">
-          <div class="caption">Line1</div>
-          <div class="caption">line2</div>
-        </div>
-      </div>
-    </v-footer>
+    <p-footer></p-footer>
   </v-app>
 </template>
 
 <script>
+import Menu from './components/Menu.vue'
+import Filter from './components/Filter.vue'
+import Help from './components/Help.vue'
+import Footer from './components/Footer.vue'
 export default {
+    components: {
+        TabMenu: Menu,
+        PFilter: Filter,
+        Help,
+        PFooter: Footer
+    },
     data() {
         return {
-            dropdown_font: [{ text: 'Arial' }, { text: 'Calibri' }, { text: 'Courier' }, { text: 'Verdana' }],
+            showMenu: false,
             products: [
                 {
                     id: 1,
@@ -280,7 +251,54 @@ export default {
             ]
         }
     },
-    name: 'App'
+    computed: {
+        styleObject() {
+            return {
+                backgroundColor: this.showMenu ? '#f2dbcf' : 'rgba(0,0,0,0)'
+            }
+        }
+    },
+    methods: {
+        scrollTo(element, scrollPixels, duration) {
+            const scrollPos = element.scrollLeft
+            // Condition to check if scrolling is required
+            if (
+                !(
+                    (scrollPos === 0 || scrollPixels > 0) &&
+                    (element.clientWidth + scrollPos === element.scrollWidth || scrollPixels < 0)
+                )
+            ) {
+                // Get the start timestamp
+                const startTime = 'now' in window.performance ? performance.now() : new Date().getTime()
+
+                function scroll(timestamp) {
+                    //Calculate the timeelapsed
+                    const timeElapsed = timestamp - startTime
+                    //Calculate progress
+                    const progress = Math.min(timeElapsed / duration, 1)
+                    //Set the scrolleft
+                    element.scrollLeft = scrollPos + scrollPixels * progress
+                    //Check if elapsed time is less then duration then call the requestAnimation, otherwise exit
+                    if (timeElapsed < duration) {
+                        //Request for animation
+                        window.requestAnimationFrame(scroll)
+                    } else {
+                        return
+                    }
+                }
+                //Call requestAnimationFrame on scroll function first time
+                window.requestAnimationFrame(scroll)
+            }
+        },
+        swipeLeft() {
+            const content = this.$refs.content
+            this.scrollTo(content, -600, 800)
+        },
+        swipeRight() {
+            const content = this.$refs.content
+            this.scrollTo(content, 600, 800)
+        }
+    }
 }
 </script>
 <style>
