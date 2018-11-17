@@ -46,7 +46,6 @@
                   class="elevation-0"
                   label="宝贝年龄"
                   multiple> -->
-        </v-select>
         <v-divider vertical></v-divider>
         <v-overflow-btn :items="empty"
                         label="产品材料"
