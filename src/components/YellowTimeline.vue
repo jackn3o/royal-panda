@@ -43,7 +43,7 @@
                         md4
                         xl2
                         d-flex>
-                    <v-card height="360"
+                    <v-card height="400"
                             class="product_detail_box"
                             @click.native="selectedDetail = d">
                         <v-img :src="d.src"
@@ -59,7 +59,7 @@
                         md4
                         xl2
                         style="flex-shrink: 0;">
-                    <v-card height="360"
+                    <v-card height="400"
                             class="transparent product_detail_box"></v-card>
                 </v-flex>
             </v-layout>

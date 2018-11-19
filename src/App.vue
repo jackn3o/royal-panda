@@ -1,5 +1,5 @@
 <template>
-    <v-app style="background-color: #FCF1EF;">
+    <v-app style="background-color: #FCF1EF; ">
         <figure class="swing"
                 style="position: fixed; top:-0.2rem; right:2rem; z-index:4; height: 120px; width: 120px;">
             <v-img @click="showMenu = !showMenu"
@@ -20,12 +20,12 @@
                 <!-- d-flex justify-center -->
                 <v-flex xs12
                         style="display: flex; justify-content: center;">
-                    <div class="site_logo blurbox">
+                    <div class="site_logo">
                         <v-img height="80"
                                style="z-index:5;"
                                :class="`${$route.name =='FullPage'? 'blur':''}`"
                                src="../static/img/layout/royal-panda.png"
-                               aspect-ratio="3/4"
+                               aspect-ratio="4/3"
                                contain></v-img>
                     </div>
                 </v-flex>

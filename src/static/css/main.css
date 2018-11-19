@@ -3,6 +3,10 @@
     padding: 0;
    }
 
+html, body{
+    overflow: hidden;
+}
+
 .application {
     font-family: "Microsoft YaHei", 黑体, 宋体, sans-serif !important;
 }
@@ -60,7 +64,7 @@
     content:'';
     position: absolute; 
     left:1rem; 
-    bottom: 15%; 
+    bottom: 10%; 
     width:calc(100% + 2rem); 
     height: 10px; 
     background-color: gold; 

@@ -3,7 +3,6 @@
         <v-img :src="`./static/img/full-page/${$route.params.id}.png`"
                style="height:100%;"
                cover></v-img>
-
         <v-bottom-sheet :value="true"
                         inset
                         persistent
@@ -15,6 +14,7 @@
                 <div class="title font-weight-light">{{ this.selectedDetail.price }} 元</div>
             </div>
         </v-bottom-sheet>
+        <div class="curl"></div>
     </div>
 </template>
 
@@ -35,4 +35,57 @@ export default {
 </script>
 
 <style>
+.curl {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        135deg,
+        white,
+        #f3f3f3 45%,
+        #ddd 50%,
+        #aaa 50%,
+        #bbb 56%,
+        #ccc 62%,
+        #f3f3f3 80%,
+        #fff 100%
+    );
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease;
+}
+
+.curl:before,
+.curl:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    right: 12.5%;
+    top: 5.8%;
+    width: 70%;
+    max-width: 300px;
+    max-height: 100%;
+    height: 55%;
+    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.3);
+    transform: skew(-10deg) rotate(-6deg);
+}
+
+.curl:after {
+    right: auto;
+    left: 5.8%;
+    bottom: auto;
+    bottom: 14.16%;
+    transform: skew(-15deg) rotate(-84deg);
+}
+
+.curl:hover {
+    width: 8rem;
+    height: 8rem;
+}
+
+.curl:hover:before,
+.curl:hover:after {
+    box-shadow: 0 24px 30px rgba(0, 0, 0, 0.3);
+}
 </style>

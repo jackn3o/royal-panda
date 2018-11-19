@@ -4,14 +4,14 @@
         <v-card flat
                 class="transparent">
             <v-card-title>
-                <v-breadcrumbs :items="breadcrumbs"
+                <!-- <v-breadcrumbs :items="breadcrumbs"
                                class="pa-0">
                     <template slot="item"
                               slot-scope="props">
                         <a :href="props.item.href"
                            :class="props.item.disabled? 'accent--text':'grey--text text--darken-1'">{{ props.item.text.toUpperCase() }}</a>
                     </template>
-                </v-breadcrumbs>
+                </v-breadcrumbs> -->
                 <v-flex></v-flex>
                 <div class="grey--text text--darken-1">共 <strong>{{ products.length || 0 }}</strong> 产品显示</div>
             </v-card-title>
