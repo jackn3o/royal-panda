@@ -54,12 +54,12 @@
                         xl2
                         d-flex>
                     <v-hover>
-                        <!-- :height="`${hover? '460':'420'}`" -->
                         <v-card height="420"
                                 slot-scope="{ hover }"
                                 class="transparent"
                                 style="border-radius:12px;"
-                                flat>
+                                flat
+                                @click.native="$router.push({name:'YellowTimeline'})">
                             <v-scale-transition mode="out-in">
                                 <div v-show="hover"
                                      class="transition-slow-in-fast-out white v-card--reveal elevation-12"
@@ -71,7 +71,6 @@
                                         class="d-flex pa-3 transition-slow-in-slow-out"
                                         :class="`${hover? 'elevation-0': 'outlined'}`"
                                         style="justify-content: center; align-items:center;">
-                                    <!-- :height="`${hover? '278':'240'}`" -->
                                     <v-img :src="p.src"
                                            height="240"
                                            contain
@@ -131,7 +130,13 @@
 </template>
 
 <script>
+import Filter from './Filter.vue'
+import Help from './Help.vue'
 export default {
+    components: {
+        PFilter: Filter,
+        Help
+    },
     data() {
         return {
             products: [

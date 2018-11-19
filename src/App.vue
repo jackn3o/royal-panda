@@ -17,12 +17,17 @@
                       justify-center
                       row
                       wrap>
+                <!-- d-flex justify-center -->
                 <v-flex xs12
-                        class="d-flex justify-center">
-                    <v-img height="90"
-                           src="../static/img/layout/royal-panda.png"
-                           aspect-ratio="2.75"
-                           contain></v-img>
+                        style="display: flex; justify-content: center;">
+                    <div class="site_logo blurbox">
+                        <v-img height="80"
+                               style="z-index:5;"
+                               :class="`${$route.name =='FullPage'? 'blur':''}`"
+                               src="../static/img/layout/royal-panda.png"
+                               aspect-ratio="3/4"
+                               contain></v-img>
+                    </div>
                 </v-flex>
                 <v-flex xs12
                         style="height:64px;">
@@ -40,23 +45,17 @@
                 </v-flex>
             </v-layout>
         </v-card>
-        <p-main></p-main>
-        <p-footer></p-footer>
+        <router-view></router-view>
+        <p-footer v-if="$route.name !='FullPage'"></p-footer>
     </v-app>
 </template>
 
 <script>
 import Menu from './components/Menu.vue'
-import Main from './components/Main.vue'
-import Filter from './components/Filter.vue'
-import Help from './components/Help.vue'
 import Footer from './components/Footer.vue'
 export default {
     components: {
         TabMenu: Menu,
-        PMain: Main,
-        PFilter: Filter,
-        Help,
         PFooter: Footer
     },
     data() {
